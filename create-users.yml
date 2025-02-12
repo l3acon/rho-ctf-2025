@@ -1,13 +1,14 @@
 ---
 - name:  create users
   hosts: all
+  become: true
   vars:
-     pass: @#FD12
+    user_pass: '@#FD12'
   tasks: 
     - name: create users
       ansible.builtin.user: 
         name: "{{ item }}"
-        password: "{{ pass }}"
+        password: "{{ user_pass }}"
       loop:
         - Annabelle
         - Bob
