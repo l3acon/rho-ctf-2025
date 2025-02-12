@@ -1,8 +1,7 @@
 ---
 - name: files and perms
   hosts: all
-  tasks:
-    - name: create folder
+  become: true
   vars:
     users:
       - name: Annabelle
