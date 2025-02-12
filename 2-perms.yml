@@ -52,10 +52,10 @@
         owner: root
         mode: '1777' 
       loop:
-        - sales
-        - support
-        - services
-        - it
+        - Sales
+        - Support
+        - Services
+        - IT
 
     - name: create files
       ansible.builtin.file: 
