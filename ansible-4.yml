@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Ensure SELinux is set to enforcing mode
+      ansible.builtin.lineinfile:
+        path: /etc/chrony/chrony.conf
+        regexp: '^server 3.north-america.pool.ntp.org'
+        line: server 3.north-america.pool.ntp.org
