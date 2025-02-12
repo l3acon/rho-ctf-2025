@@ -31,8 +31,8 @@
   tasks: 
     - name: create groups
       ansible.builtin.group: 
-          name: "{{ item.name }}"
-          state: present
+        name: "{{ item }}"
+        state: present
       loop:
         - Sales
         - Support
