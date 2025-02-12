@@ -8,9 +8,16 @@
         state: latest
       become: true
 
+    - name: create dir 
+      ansible.builtin.file:
+        path: /etc/chrony
+        state: directory
+        mode: '0755'
+      become: true
+
     - name: set primary server
       ansible.builtin.copy:
         dest: /etc/chrony/chrony.conf
         content: 'server 3.north-america.pool.ntp.org'
       become: true
-        
+
