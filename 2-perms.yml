@@ -34,26 +34,35 @@
 #      ansible.builtin.debug:
 #        msg: "{{  output }}"
 
-    - name: debug
-      ansible.builtin.find:
-        paths: /
-        pattern: "Salesnumbers"
-      register: output
-
-    - name: debug
-      ansible.builtin.debug:
-        msg: "{{ output }}"
+#    - name: debug
+#      ansible.builtin.find:
+#        paths: /
+#        pattern: "Salesnumbers"
+#      register: output
+#
+#    - name: debug
+#      ansible.builtin.debug:
+#        msg: "{{ output }}"
 
     - name: create files
       ansible.builtin.file: 
         path: "/team/{{ item }}"
         state: directory
         group: "{{ item }}"
-        owner: ctf_sa
+        owner: root
+        mode: '1777' 
       loop:
         - sales
         - support
         - services
         - it
 
+    - name: create files
+      ansible.builtin.file: 
+        path: /team/sales/Salesnumbers
 
+    - name: lineinefine
+      ansible.builtin.lineinfile: 
+        insertbefore: /^(.*)$/m
+        path: /it/tasks.done
+        line: "all folders are set"
