@@ -8,4 +8,12 @@
         number: 2
         state: present
         part_end: 1GB
-        fs_type: xfs4
+        fs_type: xfs
+
+    - name: test parted
+      ansible.posix.mount:
+        device:  /dev/nvme1n1
+        number: 2
+        state: present
+        part_end: 1GB
+        f
