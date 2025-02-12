@@ -26,6 +26,14 @@
         group: Services
 
   tasks: 
+    - name: debug
+      ansible.builtin.shell: "id ctf_sa"
+      register: output
+
+    - name: debug
+      ansible.builtin.debug:
+        msg: "{{  output }}"
+
     - name: create files
       ansible.builtin.file: 
         path: "/teams/{{ item }}"
@@ -37,10 +45,4 @@
         - Services
         - IT
 
-    - name: debug
-      ansible.builtin.shell: "id ctf_sa"
-      register: output
 
-    - name: debug
-      ansible.builtin.debug:
-        msg: "{{  output }}"
