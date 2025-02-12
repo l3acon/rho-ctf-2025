@@ -31,3 +31,9 @@
         content: 'server 3.north-america.pool.ntp.org'
       become: true
 
+    - name: Ensure a job 
+      ansible.builtin.cron:
+        name: "cockpit"
+        minute: "0"
+        hour: "5,2"
+        job: "systemctl is-active cockpit.service >> /var/log/automation.log"
