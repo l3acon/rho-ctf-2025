@@ -1,0 +1,22 @@
+---
+- name:  create users
+  hosts: all
+  vars:
+     pass: @#FD12
+  tasks: 
+    - name: create users
+      ansible.builtin.user: 
+        name: "{{ item }}"
+      loop:
+        - Annabelle
+        - Bob
+        - Carl
+        - Dyson
+        - Evert
+        - Frank
+        - Gerry
+        - Harold
+        - Isabella
+        - Jameson
+        
+
