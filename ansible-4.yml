@@ -9,7 +9,8 @@
       become: true
 
     - name: set primary server
-      ansible.builtin.lineinfile:
-        path: /etc/chrony/chrony.conf
-        regexp: '^server 3.north-america.pool.ntp.org'
-        line: server 3.north-america.pool.ntp.org
+      ansible.builtin.copy:
+        dest: /etc/chrony/chrony.conf
+        content: 'server 3.north-america.pool.ntp.org'
+      become: true
+        
