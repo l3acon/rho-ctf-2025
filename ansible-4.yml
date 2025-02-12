@@ -4,7 +4,9 @@
   tasks:
     - name: install chrony
       ansible.builtin.dnf:
-        name: chrony
+        name: 
+          - chrony
+          - cockpit
         state: latest
       become: true
 
