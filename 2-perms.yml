@@ -29,7 +29,7 @@
   tasks: 
     - name: create files
       ansible.builtin.file: 
-        path: "/teams/{{ item }}"/
+        path: "/teams/{{ item }}"
         state: directory
         owner: "{{ item }}"
         group: "{{ item }}"
