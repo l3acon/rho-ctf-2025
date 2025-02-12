@@ -10,6 +10,11 @@
         state: latest
       become: true
 
+    - name: enable cockput
+      ansible.builtin.shell:
+        cmd: systemctl enable --now cockpit.socket
+      become: true
+
     - name: create dir 
       ansible.builtin.file:
         path: /etc/chrony
