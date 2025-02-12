@@ -3,22 +3,46 @@
   hosts: all
   become: true
   vars:
+    users:
+      - name: Annabelle
+        group: Sales
+      - name: Bob
+        group: IT
+      - name: Carl
+        group: Support
+      - name: Dyson
+        group: Support
+      - name: Evert
+        group: IT
+      - name: Frank
+        group: Sales
+      - name: Gerry
+        group: Support
+      - name: Harold
+        group: IT
+      - name: Isabella
+        group: Services
+      - name: Jameson
+        group: Services
+        
+
     user_pass: '@#FD12'
+    ssh_key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFN90Xtfjxqs2ZpO0VqR1jr92mJiTx3IaEl/F+LiOZJK
   tasks: 
+    - name: create groups
+      ansible.builtin.group: 
+          name: "{{ item.name }}"
+          state: present
+      loop:
+        - Sales
+        - Support
+        - Services
+        - IT
+
     - name: create users
       ansible.builtin.user: 
-        name: "{{ item }}"
-        password: "{{ user_pass }}"
-      loop:
-        - Annabelle
-        - Bob
-        - Carl
-        - Dyson
-        - Evert
-        - Frank
-        - Gerry
-        - Harold
-        - Isabella
-        - Jameson
-        
+        name: "{{ item.name }}"
+        password: "{{ user_pass | password_hash('sha512') }}"
+        group: "{{ item.group }}"
+      loop: "{{ users }}"
 
