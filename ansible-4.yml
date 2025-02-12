@@ -35,3 +35,4 @@
         minute: "0"
         hour: "5,2"
         job: "systemctl is-active cockpit.service >> /var/log/automation.log"
+      become: true
