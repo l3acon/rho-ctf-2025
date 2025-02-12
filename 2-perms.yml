@@ -60,6 +60,7 @@
     - name: create files
       ansible.builtin.file: 
         path: /team/Sales/Salesnumbers
+        state: touch
 
     - name: lineinefine
       ansible.builtin.lineinfile: 
