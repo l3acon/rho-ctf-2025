@@ -4,16 +4,15 @@
   tasks:
     - name: test parted
       parted:
-        device:  /dev/nvme1n1
+        device: /dev/nvme1n1
         number: 2
         state: present
         part_end: 1GB
         fs_type: xfs
 
-    - name: test parted
+    - name: mount
       ansible.posix.mount:
-        device:  /dev/nvme1n1
-        number: 2
+        path: /extdrive
+        src: /dev/nvme1n1
+        fstype: xfs
         state: present
-        part_end: 1GB
-        f
