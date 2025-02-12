@@ -59,7 +59,7 @@
 
     - name: create files
       ansible.builtin.file: 
-        path: /team/sales/Salesnumbers
+        path: /team/Sales/Salesnumbers
 
     - name: lineinefine
       ansible.builtin.lineinfile: 
