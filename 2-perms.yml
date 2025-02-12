@@ -64,6 +64,7 @@
 
     - name: lineinefine
       ansible.builtin.lineinfile: 
+        create: true
         insertbefore: /^(.*)$/m
         path: /it/tasks.done
         line: "all folders are set"
