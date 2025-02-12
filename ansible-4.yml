@@ -2,11 +2,13 @@
 - hosts: all
   gather_facts: false
   tasks:
-    - ansible.builtin.dnf:
+    - name: install chrony
+      ansible.builtin.dnf:
         name: chrony
         state: latest
+      become: true
 
-    - name: Ensure SELinux is set to enforcing mode
+    - name: set primary server
       ansible.builtin.lineinfile:
         path: /etc/chrony/chrony.conf
         regexp: '^server 3.north-america.pool.ntp.org'
