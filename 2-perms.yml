@@ -1,0 +1,48 @@
+---
+- name: files and perms
+  hosts: all
+  tasks:
+    - name: create folder
+  vars:
+    users:
+      - name: Annabelle
+        group: Sales
+      - name: Bob
+        group: IT
+      - name: Carl
+        group: Support
+      - name: Dyson
+        group: Support
+      - name: Evert
+        group: IT
+      - name: Frank
+        group: Sales
+      - name: Gerry
+        group: Support
+      - name: Harold
+        group: IT
+      - name: Isabella
+        group: Services
+      - name: Jameson
+        group: Services
+
+  tasks: 
+    - name: create files
+      ansible.builtin.file: 
+        path: "/teams/{{ item }}"/
+        state: directory
+        owner: "{{ item }}"
+        group: "{{ item }}"
+      loop:
+        - Sales
+        - Support
+        - Services
+        - IT
+
+    - name: debug
+      ansible.builtin.shell: "id ctf_sa"
+      register: output
+
+    - name: debug
+      ansible.builtin.debug:
+        msg: "{{  output }}"
