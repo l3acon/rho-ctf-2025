@@ -1,0 +1,10 @@
+- name: do storage
+  hosts: server2
+  tasks:
+    - name: test parted
+      parted:
+        device:  /dev/nvme1n1
+        number: 2
+        state: present
+        part_end: 1GB
+        fs_type: xfs4
