@@ -30,7 +30,6 @@
       ansible.builtin.file: 
         path: "/teams/{{ item }}"
         state: directory
-        owner: "{{ item }}"
         group: "{{ item }}"
       loop:
         - Sales
