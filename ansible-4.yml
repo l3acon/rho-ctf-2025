@@ -2,6 +2,10 @@
 - hosts: all
   gather_facts: false
   tasks:
+    - ansible.builtin.dnf:
+        name: chrony
+        state: latest
+
     - name: Ensure SELinux is set to enforcing mode
       ansible.builtin.lineinfile:
         path: /etc/chrony/chrony.conf
