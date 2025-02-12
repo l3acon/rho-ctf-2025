@@ -1,6 +1,6 @@
 ---
 - name: files and perms
-  hosts: all
+  hosts: server2
   become: true
   vars:
     users:
@@ -26,23 +26,34 @@
         group: Services
 
   tasks: 
+#    - name: debug
+#      ansible.builtin.shell: "id ctf_sa"
+#      register: output
+#
+#    - name: debug
+#      ansible.builtin.debug:
+#        msg: "{{  output }}"
+
     - name: debug
-      ansible.builtin.shell: "id ctf_sa"
+      ansible.builtin.find:
+        paths: /
+        pattern: "Salesnumbers"
       register: output
 
     - name: debug
       ansible.builtin.debug:
-        msg: "{{  output }}"
+        msg: "{{ output }}"
 
     - name: create files
       ansible.builtin.file: 
-        path: "/teams/{{ item }}"
+        path: "/team/{{ item }}"
         state: directory
         group: "{{ item }}"
+        owner: ctf_sa
       loop:
-        - Sales
-        - Support
-        - Services
-        - IT
+        - sales
+        - support
+        - services
+        - it
 
 
